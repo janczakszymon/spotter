@@ -23,17 +23,28 @@ services:
       - "80:80"
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
-      - ./app/public:/var/app/public
+      - ./backend/public:/var/app/public
     networks:
       - app-network
 
-  php:
-    container_name: ${PROJECT_NAME}_php
-    build: ./php
+  backend:
+    container_name: ${PROJECT_NAME}_backend
+    build: ./backend
     volumes:
-      - ./app:/var/app
+      - ./backend:/var/app
     networks:
       - app-network
+
+  frontend:
+    container_name: ${PROJECT_NAME}_frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+      - "24678:24678"
+    networks:
+      - app-network
+    volumes:
+      - ./frontend:/app
 
 networks:
   app-network:
