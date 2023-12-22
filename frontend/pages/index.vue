@@ -2,7 +2,7 @@
   <NuxtLayout>
     <v-row class="row">
       <v-col cols="8">
-        <PostComponent content="Dodawanie here"></PostComponent>
+        <PostEditComponent></PostEditComponent>
       </v-col>
       <v-col cols="4">
         <PostComponent content="filtry here"></PostComponent>
@@ -15,6 +15,7 @@
 </template>
 <script setup lang="ts">
 import PostComponent from "~/components/Posts/PostComponent.vue";
+import PostEditComponent from "~/components/Posts/PostEditComponent.vue";
 
 const posts = [
   "Dzień dobry ! \n" +

@@ -3,6 +3,11 @@ import { defineNuxtConfig } from "nuxt/config";
 export default defineNuxtConfig({
   modules: [],
   vite: {
+    vue: {
+      script: {
+        defineModel: true,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
