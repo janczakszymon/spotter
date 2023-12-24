@@ -1,42 +1,42 @@
 <template>
   <div class="post-edit-component">
-    <textarea placeholder="Content" class="content"></textarea>
+    <textarea v-model="postStore.post.content" placeholder="Content" class="content"></textarea>
     <div class="meta">
-      <InputComponent v-model="reactions" placeholder="Reactions">
+      <InputComponent v-model="postStore.post.reactions" placeholder="Reactions">
         <template #prepend-icon>
           <i class="icon-thumbs-up"></i>
         </template>
       </InputComponent>
-      <InputComponent v-model="comments" placeholder="Comments">
+      <InputComponent v-model="postStore.post.comments" placeholder="Comments">
         <template #prepend-icon>
           <i class="icon-comment"></i>
         </template>
       </InputComponent>
-      <InputComponent v-model="shares" placeholder="Shares">
+      <InputComponent v-model="postStore.post.shares" placeholder="Shares">
         <template #prepend-icon>
           <i class="icon-share"></i>
         </template>
       </InputComponent>
-      <InputComponent v-model="created" placeholder="Created" type="datetime-local">
+      <InputComponent v-model="postStore.post.created" placeholder="Created" type="datetime-local">
       </InputComponent>
     </div>
     <div class="tags">
-      tagi
+      <AddTagComponent></AddTagComponent>
+      <TagComponent v-for="(tag, key) in postStore.post.tags" :key="key" :name="tag.name" :is-tag="tag.isTag"></TagComponent>
     </div>
     <div class="actions">
-      <ButtonComponent class="ml-auto">Save</ButtonComponent>
-      <ButtonComponent type="danger">Clear</ButtonComponent>
+      <ButtonComponent type="success" class="ml-auto">Save</ButtonComponent>
+      <ButtonComponent type="danger" @click="postStore.clearPostData()">Clear</ButtonComponent>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {usePostStore} from "~/store/PostStore";
+import TagComponent from "~/components/Posts/TagComponent.vue";
+import AddTagComponent from "~/components/Posts/AddTagComponent.vue";
 
-const reactions = ref();
-const comments = ref();
-const shares = ref();
-const created = ref();
+const postStore = usePostStore();
 </script>
 
 <style lang="scss">
@@ -46,7 +46,6 @@ const created = ref();
   background-color: $charcoal;
   color: $problem;
   border-radius: 15px;
-  overflow: hidden;
   height: 100%;
 
   & > * {
@@ -68,6 +67,8 @@ const created = ref();
   .meta {
     color: $problem;
     background-color: transparentize($chad, 0.65);
+    display: flex;
+    flex-wrap: wrap;
 
     input {
       color: $problem;
@@ -75,6 +76,8 @@ const created = ref();
   }
 
   .tags {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .actions {

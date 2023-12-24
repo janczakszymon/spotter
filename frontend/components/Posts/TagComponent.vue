@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-component">
+  <div class="tag-component" :class="{'tag': props.isTag, 'hashtag': !props.isTag}">
     <i v-if="props.isTag" class="icon-tags"></i>
     <i v-else class="icon-hashtag"></i>
     <span v-html="props.name"></span>
@@ -32,5 +32,9 @@ const props = defineProps({
   display: flex;
   align-items: center;
   gap: 5px;
+
+  &.hashtag {
+    opacity: 0.5;
+  }
 }
 </style>

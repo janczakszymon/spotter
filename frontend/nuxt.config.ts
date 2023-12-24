@@ -1,7 +1,9 @@
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
-  modules: [],
+  modules: [
+    "@pinia/nuxt"
+  ],
   vite: {
     vue: {
       script: {

@@ -1,7 +1,12 @@
 <template>
   <div class="input-component">
     <slot name="prepend-icon"></slot>
-    <input v-model="modelValue" ref="input" :type="props.type" :placeholder="props.placeholder" @input="updateWidth">
+    <input v-model="modelValue"
+           ref="input"
+           :type="props.type"
+           :placeholder="props.placeholder"
+           @input="updateWidth"
+    >
   </div>
 </template>
 
@@ -38,17 +43,24 @@ function updateWidth(): void {
     return;
   }
 
+  console.log('a')
+
   input.value.style.width = `${length + freeSpaceWidth}ch`
 }
 
 onMounted(() => {
   updateWidth();
 })
+
+defineExpose({
+  updateWidth
+})
 </script>
 
 <style scoped lang="scss">
 .input-component {
-  background-color: transparentize($problem, 0.9);
+  //background-color: transparentize($problem, 0.9);
+  border: solid 1px transparentize($problem, 0.9);
   border-radius: 5px;
   padding: 1px;
 

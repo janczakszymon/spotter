@@ -8,15 +8,15 @@
 const props = defineProps({
   type: {
     type: String,
-    default: 'success'
+    default: 'info'
   }
 });
 </script>
 
 <style scoped lang="scss">
 .button-component {
-  padding: 2px 10px;
-  border-radius: 5px;
+  padding: 1px 10px;
+  border-radius: 15px;
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 1px;
@@ -36,6 +36,11 @@ const props = defineProps({
 
   &.danger {
     background-color: $imperial;
+  }
+
+  &.info {
+    background-color: $cubs;
+    color: $problem;
   }
 }
 </style>
