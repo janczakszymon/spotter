@@ -22,7 +22,15 @@
     </div>
     <div class="tags">
       <AddTagComponent></AddTagComponent>
-      <TagComponent v-for="(tag, key) in postStore.post.tags" :key="key" :name="tag.name" :is-tag="tag.isTag"></TagComponent>
+      <div v-for="(tag, key) in postStore.post.tags"
+           :key="key" class="tag">
+        <TagComponent
+                      :name="tag.name"
+                      :is-tag="tag.isTag">
+
+        </TagComponent>
+        <ButtonComponent type="danger" @click="deleteTag(tag.name)">X</ButtonComponent>
+      </div>
     </div>
     <div class="actions">
       <ButtonComponent type="success" class="ml-auto">Save</ButtonComponent>
@@ -37,6 +45,13 @@ import TagComponent from "~/components/Posts/TagComponent.vue";
 import AddTagComponent from "~/components/Posts/AddTagComponent.vue";
 
 const postStore = usePostStore();
+
+function deleteTag(name: string): void
+{
+  const tags = postStore.post.tags;
+  const tagIndex = tags.findIndex( (x) => x.name === name);
+  tags.splice(tagIndex, 1);
+}
 </script>
 
 <style lang="scss">
@@ -45,7 +60,6 @@ const postStore = usePostStore();
   flex-direction: column;
   background-color: $charcoal;
   color: $problem;
-  border-radius: 15px;
   height: 100%;
 
   & > * {
@@ -78,6 +92,13 @@ const postStore = usePostStore();
   .tags {
     display: flex;
     flex-wrap: wrap;
+
+    .tag {
+      border-radius: 15px;
+      background-color: transparentize($chad, 0.5);
+      display: flex;
+      gap: 3px;
+    }
   }
 
   .actions {

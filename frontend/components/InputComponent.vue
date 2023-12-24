@@ -43,8 +43,6 @@ function updateWidth(): void {
     return;
   }
 
-  console.log('a')
-
   input.value.style.width = `${length + freeSpaceWidth}ch`
 }
 

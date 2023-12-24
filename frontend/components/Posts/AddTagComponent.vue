@@ -56,7 +56,12 @@ function setTagName(name: string): void
 
 function addTag(): void
 {
-  if (!selectedTag.value.length) {
+  const tags = postStore.post.tags;
+  const tagIndex = tags.findIndex( (x) => x.name === selectedTag.value);
+
+  console.log(tagIndex)
+
+  if (!selectedTag.value.length || tagIndex >= 0) {
     return;
   }
 

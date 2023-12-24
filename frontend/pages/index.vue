@@ -1,13 +1,10 @@
 <template>
   <NuxtLayout>
     <v-row class="row">
-      <v-col cols="8">
+      <v-col cols="12">
         <PostEditComponent></PostEditComponent>
       </v-col>
-      <v-col cols="4">
-        <PostComponent content="filtry here"></PostComponent>
-      </v-col>
-      <v-col v-for="(post, i) in posts" :key="i" cols="3" class="col">
+      <v-col v-for="(post, i) in posts" :key="i" cols="4" class="col">
         <PostComponent :content="post"></PostComponent>
       </v-col>
     </v-row>

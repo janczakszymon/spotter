@@ -18,7 +18,7 @@ const props = defineProps({
   padding: 1px 10px;
   border-radius: 15px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
   color: $eerie;
@@ -36,6 +36,7 @@ const props = defineProps({
 
   &.danger {
     background-color: $imperial;
+    color: $problem;
   }
 
   &.info {
